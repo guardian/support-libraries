@@ -1,5 +1,8 @@
 import sbt.Keys.{publishTo, resolvers, scalaVersion}
+import sbtrelease.ReleasePlugin.autoImport.releaseUseGlobalVersion
 import sbtrelease.ReleaseStateTransformations._
+
+skip in publish := true
 
 scmInfo := Some(ScmInfo(
   url("https://github.com/guardian/support-libraries"),
@@ -34,7 +37,15 @@ lazy val commonSettings = Seq(
       Some("releases" at nexus + "service/local/staging/deploy/maven2")
   },
   licenses := Seq("Apache V2" -> url("http://www.apache.org/licenses/LICENSE-2.0.html")),
-  releaseProcess := release
+
+  releaseProcess := release,
+  releaseUseGlobalVersion := false,
+  releaseVersionFile := file(name.value + "/version.sbt"),
+  releaseTagName := {
+    val versionInThisBuild = (version in ThisBuild).value
+    val versionValue = version.value
+    s"${name.value}-v${if (releaseUseGlobalVersion.value) versionInThisBuild else versionValue}"
+  }
 )
 
 lazy val commonDependencies = Seq(

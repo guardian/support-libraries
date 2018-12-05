@@ -4,6 +4,8 @@ name := "support-services"
 
 description := "Scala library to provide shared services to Guardian Support projects."
 
+version := "0.1-SNAPSHOT"
+
 libraryDependencies ++= Seq(
   "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
   "com.amazonaws" % "aws-java-sdk-dynamodb" % awsClientVersion,
