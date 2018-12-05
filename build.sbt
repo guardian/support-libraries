@@ -1,6 +1,11 @@
 import sbt.Keys.{publishTo, resolvers, scalaVersion}
 import sbtrelease.ReleaseStateTransformations._
 
+scmInfo := Some(ScmInfo(
+  url("https://github.com/guardian/support-libraries"),
+  "scm:git:git@github.com:guardian/support-libraries.git"
+))
+
 val release = Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
