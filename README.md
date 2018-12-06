@@ -30,4 +30,3 @@ https://docs.google.com/document/d/1M_MiE8qntdDn97QIRnIUci5wdVQ8_defCqpeAwoKY8g/
 Currently each library is versioned separately and must be released separately, this can be done using the command:
 
 `sbt "project [the project]" release`
-
